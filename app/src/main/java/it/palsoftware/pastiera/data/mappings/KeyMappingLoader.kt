@@ -2,6 +2,7 @@ package it.palsoftware.pastiera.data.mappings
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.os.Build
 import android.util.Log
 import android.view.KeyEvent
 import it.palsoftware.pastiera.SettingsManager
@@ -15,6 +16,14 @@ object KeyMappingLoader {
     private const val TAG = "KeyMappingLoader"
 
     fun getDeviceName(context: Context? = null): String {
+        val codename = Build.DEVICE
+
+        // both Key2 variants share the same PKB layout
+        // under LineageOS
+        if (codename == "athena" || codename == "luna") {
+            return "key2"
+        }
+
         return "titan2"
     }
 
